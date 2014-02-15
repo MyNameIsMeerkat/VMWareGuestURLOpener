@@ -7,7 +7,7 @@ Usage:
 
 from setuptools import setup
 
-APP = ['vmware_guest_url.py']
+APP = ['vmware_guest_url_opener.py']
 OPTIONS = {
     'argv_emulation': False,
     'plist': {
@@ -15,9 +15,9 @@ OPTIONS = {
         'NSPrincipalClass': 'NSApplication',
         'NSAppleScriptEnabled': 'YES',
         'LSUIElement': 'YES',
-        'CFBundleIdentifier': 'is.syndis.vmware_guest_url',
+        'CFBundleIdentifier': 'is.syndis.vmware_guest_url_opener',
         'CFBundleURLTypes': [{
-            'CFBundleURLName': 'VMWare Guest URI Handle',
+            'CFBundleURLName': 'VMWare Guest URL Opener',
             'CFBundleURLSchemes': [
                 'HTTP',
                 'HTTPS',
@@ -25,6 +25,7 @@ OPTIONS = {
         }],
     }
 }
+
 
 setup(
     app=APP,
