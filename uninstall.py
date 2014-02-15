@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #-----------------------------------------------------------
 # Filename      : uninstall.py.py
 # Description   : Uninstall VMWareGuestURLOpener as the default handler
@@ -6,8 +6,6 @@
 # Date Created  : 15-Feb-2014 12:46
 # 
 # License       : BSD
-#
-# (c) Copyright 2014, Syndis all rights reserved.
 #-----------------------------------------------------------
 __author__ = "Rich Smith"
 __version__ = "0.1"

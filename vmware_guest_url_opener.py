@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #-----------------------------------------------------------
 # Filename      : vmware_guest_url_opener.py
 # Description   : A URL handler to open web links in a VMWare Fusion guest
@@ -6,8 +6,6 @@
 # Date Created  : 14-Feb-2014 18:49
 #
 # License       : BSD
-#
-# (c) Copyright 2014, Syndis all rights reserved.
 #-----------------------------------------------------------
 __author__ = "Rich Smith"
 __version__ = "0.1"
