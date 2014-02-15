@@ -40,8 +40,8 @@ python vmware_guest_url_opener.py register
 ```
 
 ##Todo
-Create a nice installation script
-Create an uninstallation script
+* Create a nice installation script
+* Create an uninstallation script
 
 ##References
 
