@@ -1,9 +1,9 @@
+#!/usr/bin/python
 #-----------------------------------------------------------
 # Filename      : uninstall.py.py
 # Description   : Uninstall VMWareGuestURLOpener as the default handler
 # Created By    : Rich Smith
 # Date Created  : 15-Feb-2014 12:46
-# Date Modified : 
 # 
 # License       : BSD
 #
@@ -38,8 +38,8 @@ class Uninstall(object):
 
 
         try:
-            orig_http_handler  = self.config.get("config", "http_handler")
-            orig_https_handler = self.config.get("config", "https_handler")
+            orig_http_handler  = self.config.get("config", "orig_http_handler")
+            orig_https_handler = self.config.get("config", "orig_https_handler")
         except ConfigParser.NoOptionError, err:
             print err
             print "Uninstallation cannot continue, please reset your default handler manually."

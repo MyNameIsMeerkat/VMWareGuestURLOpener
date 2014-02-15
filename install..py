@@ -1,9 +1,9 @@
+#!/usr/bin/python
 #-----------------------------------------------------------
 # Filename      : install..py.py
 # Description   : VMWareGuestURLOpener quick installation script
 # Created By    : Rich Smith
 # Date Created  : 15-Feb-2014 08:36
-# Date Modified : 
 # 
 # License       : BSD
 #
@@ -121,8 +121,8 @@ These should be specified as a list of regular expressions to match against dest
         self.config.set("config", "host_urls", host_urls)
         self.config.set("config", "host_browser", host_browser)
         self.config.set("config", "bin", os.path.join(os.path.expanduser(fusion_bin), self.vmrun_bin))
-        self.config.set("config", "http_handler", http_handler)
-        self.config.set("config", "https_handler", https_handler)
+        self.config.set("config", "orig_http_handler", http_handler)
+        self.config.set("config", "orig_https_handler", https_handler)
 
 
 if __name__ == "__main__":
