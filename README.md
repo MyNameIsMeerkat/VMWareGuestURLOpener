@@ -41,6 +41,10 @@ The next two variables determine the behaviour of the URL handler:
 
 Once you have setup the config file you need to copy it to `~/.vmware_guest_url_opener.cfg` - **remember to set appropriate permissions on it as it has a password in it**
 
+The following variables are set by the `install.py` script so as to be able to restore the URL handlers that were previously set:
+
+* `http_handler` - The identifier of the existing default http handler e.g. com.google.chrome
+* `https_handler` - The identifier of the existing default https handler e.g. com.google.chrome
 
 The final step is to set this application as the default URL handler for applications so that it intercepts future URLs,
 to do this just do:
@@ -49,9 +53,14 @@ to do this just do:
 python vmware_guest_url_opener.py register
 ```
 
-##Todo
+##Uninstall
 
-* Create an uninstallation script
+An uninstaller script is provided, it will reset the URL handlers to whatever they were before VMWareGuestURLOpener was installed.
+To uninstall simply do:
+
+```
+python uninstall.py
+```
 
 ##References
 

@@ -23,20 +23,28 @@ from objc import signature
 from AppKit import NSApplication
 from PyObjCTools import AppHelper
 from Foundation import NSAppleEventManager, NSObject, NSLog
-from LaunchServices import LSSetDefaultHandlerForURLScheme
-from LaunchServices import LSSetDefaultRoleHandlerForContentType
+from LaunchServices import LSSetDefaultHandlerForURLScheme, LSSetDefaultRoleHandlerForContentType, LSCopyDefaultHandlerForURLScheme
 
 
+def GetCurrentDefaultHandlers():
+    """
+    See what the currently set handler is for http & https urls - so as we can restore it later if needed
+    """
+    http_handler  = LSCopyDefaultHandlerForURLScheme("http")
+    https_handler = LSCopyDefaultHandlerForURLScheme("https")
 
-def RegisterHandle():
+    return http_handler, https_handler
+
+
+def RegisterHandler(http_handler = "is.syndis.vmware_guest_url_opener", https_handler = "is.syndis.vmware_guest_url_opener"):
     """
     Register ourselves as the default Web handler
     """
-    NSLog("Registering vmware_guest_url as default web URL handler.....")
-    LSSetDefaultRoleHandlerForContentType("public.html" , 0x00000002, "is.syndis.vmware_guest_url_opener")
-    LSSetDefaultRoleHandlerForContentType("public.xhtml", 0x00000002, "is.syndis.vmware_guest_url_opener")
-    LSSetDefaultHandlerForURLScheme("http" , "is.syndis.vmware_guest_url_opener")
-    LSSetDefaultHandlerForURLScheme("https", "is.syndis.vmware_guest_url_opener")
+    NSLog("Registering %s as default web URL handler....."%(http_handler))
+    LSSetDefaultRoleHandlerForContentType("public.html" , 0x00000002, http_handler)
+    LSSetDefaultRoleHandlerForContentType("public.xhtml", 0x00000002, http_handler)
+    LSSetDefaultHandlerForURLScheme("http" , http_handler)
+    LSSetDefaultHandlerForURLScheme("https", https_handler)
     NSLog("Registration complete.")
 
 
@@ -163,7 +171,7 @@ if __name__ == '__main__':
     try:
         if len(sys.argv) >1 and sys.argv[1] == "register":
             ##We need to set the default URL to bootstrap ourselves
-            regHandler = RegisterHandle()
+            regHandler = RegisterHandler()
             regHandler()
         else:
             main()

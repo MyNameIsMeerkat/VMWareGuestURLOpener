@@ -17,17 +17,17 @@ import sys
 import getpass
 import ConfigParser
 import distutils.core
-from vmware_guest_url_opener import RegisterHandle
+from vmware_guest_url_opener import RegisterHandler, GetCurrentDefaultHandlers
 
 class Install(object):
     """
     Quicky installer to make setup easier
     """
-    def __init__(self):
+    def __init__(self, config_file = "~/.vmware_guest_url_opener.cfg"):
         """
         """
         self.config      = ConfigParser.RawConfigParser()
-        self.config_dest = os.path.expanduser("~/.vmware_guest_url_opener.cfg")
+        self.config_dest = os.path.expanduser(config_file)
 
         self.browser_choices = ["chrome", "firefox", "safari"]
         self.fusion_app      = "/Applications/VMware Fusion.app"
@@ -53,15 +53,14 @@ class Install(object):
         raw_input("\n\nDone. Now we are going to get some information from you to setup your VMWareGuestURLOpener environment. hit Enter to continue  ")
         self.get_and_set_config()
 
-        #Copy config to ~
+        #Copy config to ~ & chmod it to provide the pw a modicum of protection
         with open(self.config_dest, 'wb') as configfile:
             self.config.write(configfile)
-        #chmod it to provide the pw a modicum of protection
         os.chmod(self.config_dest, 0600)
 
         #Register handler
         print "\nRegistering VMWareGuestURLOpener as the default URL handler...",
-        RegisterHandle()
+        RegisterHandler()
         print "done."
 
         print "\n\nInstallation Complete"
@@ -111,6 +110,9 @@ These should be specified as a list of regular expressions to match against dest
         fusion_bin   = self._get_user_input("Where is your VMWare Fusion application installed? [%s] "%(self.fusion_app), default = self.fusion_app )
 
 
+        ##Record the current http/https handler so they can be easily restored later if needed
+        http_handler, https_handler = GetCurrentDefaultHandlers()
+
         ##Build config
         self.config.add_section("config")
         self.config.set("config", "user", vm_user)
@@ -119,6 +121,8 @@ These should be specified as a list of regular expressions to match against dest
         self.config.set("config", "host_urls", host_urls)
         self.config.set("config", "host_browser", host_browser)
         self.config.set("config", "bin", os.path.join(os.path.expanduser(fusion_bin), self.vmrun_bin))
+        self.config.set("config", "http_handler", http_handler)
+        self.config.set("config", "https_handler", https_handler)
 
 
 if __name__ == "__main__":
