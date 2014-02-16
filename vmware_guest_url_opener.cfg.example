@@ -1,0 +1,9 @@
+[config]
+user = YourGuestVMUserHere
+password = YourGuestVMPasswordHere
+vmx_path = /Users/MyUserName/Documents/Virtual Machines/MyVM.vmwarevm/MyVM.vmx
+bin = /Applications/VMware Fusion.app/Contents/Library/vmrun
+host_urls = [*.]gmail.com;[*.]github.com
+host_browser = "chrome"
+orig_http_handler = com.google.chrome
+orig_https_handler = com.google.chrome
