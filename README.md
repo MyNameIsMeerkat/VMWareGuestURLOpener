@@ -64,4 +64,4 @@ python uninstall.py
 
 ##References
 
-The Apple Event code for handling the URL events was on the technique used by [https://github.com/irq0/osx-url-open-handler]()
+The Apple Event code for handling the URL events was based on the technique used by [https://github.com/irq0/osx-url-open-handler]()
